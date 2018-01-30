@@ -18,8 +18,8 @@ public class JsCore {
      * @return
      * @throws ScriptException
      */
-    public static String executeJs(String js) throws ScriptException {
-        return scriptEngine.eval(js)+"";
+    public static Object executeJs(String js) throws ScriptException {
+        return scriptEngine.eval(js);
     }
 
     public static void main(String[] args) throws ScriptException {

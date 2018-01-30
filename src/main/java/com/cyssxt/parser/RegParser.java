@@ -12,8 +12,8 @@ import java.util.regex.Pattern;
 
 public class RegParser<T extends RegParam,V extends RegValue> implements Parser<T,V> {
 
-    private DefaultRegParamGrammar<T> regParamGrammar = null;
-    public RegParser(DefaultRegParamGrammar<T> regParamGrammar) {
+    private RegParamGrammar<T,Pattern> regParamGrammar = null;
+    public RegParser(RegParamGrammar<T,Pattern> regParamGrammar) {
         this.regParamGrammar = regParamGrammar;
     }
 
@@ -26,11 +26,11 @@ public class RegParser<T extends RegParam,V extends RegValue> implements Parser<
         while(matcher.find()){
             if(matcher.groupCount()>0){
                 String key = matcher.group(1);
-                String paramValue = regParamGrammar.callback(key,paramMap);//paramMap.get(key);
+                String paramValue = regParamGrammar.callback(key,paramMap,matcher);//paramMap.get(key);
                 if(null==paramValue){
                     paramValue = paramMap.get(key);
                 }
-                value  = value.replace(regParam.getParamKey(key),paramValue);
+                value  = value.replace(regParamGrammar.getParamKey(key,matcher),paramValue);
             }
         }
         return (V)new RegValue(value,matcher);
