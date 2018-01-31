@@ -18,8 +18,7 @@ public class ParamCore {
     }
     public ParamCore(String source) throws Exception {
         this.source = source;
-        RegParam regParam = new RegParam(new HashMap<String, String>());
-        RegParser regParser = new RegParser(new DefaultRegParamGrammar(regParam));
+        RegParser regParser = new RegParser(new DefaultRegParamGrammar());
         parserLinkedList.add(regParser);
         end();
 //        return regParser.parser(source).getValue();
@@ -29,8 +28,7 @@ public class ParamCore {
         String value = source;
         for(RegParser regParser:parserLinkedList){
             try {
-                RegValue regValue = regParser.parser(value);
-                value = regValue.getValue();
+                String result = regParser.parser(value,new HashMap<String,String>());
             } catch (Exception e) {
                 e.printStackTrace();
             }

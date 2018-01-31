@@ -7,7 +7,7 @@ import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public interface RegParamGrammar<T extends RegParam,V> extends ParamGrammar<T,V>{
+public interface RegParamGrammar<V> extends ParamGrammar<V>{
 
     public String getParamKey(String key,Matcher matcher);
 

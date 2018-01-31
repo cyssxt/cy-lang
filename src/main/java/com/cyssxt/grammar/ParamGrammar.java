@@ -1,8 +1,8 @@
 package com.cyssxt.grammar;
 
-public interface ParamGrammar<T,V> {
+import com.cyssxt.core.Register;
 
-    T loadData() throws Exception;
+public interface ParamGrammar<V>  {//extends Register
 
     V loadGrammar();
 

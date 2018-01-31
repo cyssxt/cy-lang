@@ -10,17 +10,17 @@ import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class RegParser<T extends RegParam,V extends RegValue> implements Parser<T,V> {
+public class RegParser implements Parser {
 
-    private RegParamGrammar<T,Pattern> regParamGrammar = null;
-    public RegParser(RegParamGrammar<T,Pattern> regParamGrammar) {
+    private RegParamGrammar<Pattern> regParamGrammar = null;
+    public RegParser(RegParamGrammar<Pattern> regParamGrammar) {
         this.regParamGrammar = regParamGrammar;
     }
 
-    public V parser(String content) throws Exception {
-        RegParam regParam =  regParamGrammar.loadData();
+    public String parser(String content,Map<String,String> paramMap) throws Exception {
+//        RegParam regParam =  regParamGrammar.loadData();
         Pattern pattern = regParamGrammar.loadGrammar();
-        Map<String,String> paramMap = regParam.getParamMap();
+//        Map<String,String> paramMap = regParam.getParamMap();
         Matcher matcher = pattern.matcher(content);
         String value = content;
         while(matcher.find()){
@@ -33,7 +33,7 @@ public class RegParser<T extends RegParam,V extends RegValue> implements Parser<
                 value  = value.replace(regParamGrammar.getParamKey(key,matcher),paramValue);
             }
         }
-        return (V)new RegValue(value,matcher);
+        return value;
     }
 
 }

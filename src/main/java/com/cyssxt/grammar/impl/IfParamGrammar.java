@@ -11,16 +11,8 @@ import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class IfParamGrammar extends AbstractRegParamGrammar<RegParam> {
+public class IfParamGrammar extends AbstractRegParamGrammar {
 
-    public IfParamGrammar(RegParam regParam) {
-        super(regParam);
-    }
-
-//    @Override
-//    public String getParamKey(String key,Matcher matcher) {
-//        return matcher.group();
-//    }
 
     @Override
     public String callback(String regReplaceContent, Map<String, String> paramMap, Matcher matcher) throws ScriptException {

@@ -10,17 +10,13 @@ import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class FunctionParamGrammar extends AbstractRegParamGrammar<RegParam>{
+public class FunctionParamGrammar extends AbstractRegParamGrammar{
 
     private final static Pattern REG = Pattern.compile("##((?!##).+)##");
     private final static String PARAM_KEY_EXP = "##name##";
 //    public String getParamKey(String key,Matcher matcher){
 //        return PARAM_KEY_EXP.replace("name",key);
 //    }
-
-    public FunctionParamGrammar(RegParam functionParam) {
-        super(functionParam);
-    }
 
     @Override
     public String callback(String regReplaceContent, Map<String, String> paramMap, Matcher matcher) throws ScriptException {

@@ -1,5 +1,6 @@
 package com.cyssxt.grammar.impl;
 
+import com.cyssxt.annotation.Grammar;
 import com.cyssxt.bean.BaseParam;
 import com.cyssxt.bean.RegParam;
 import com.cyssxt.grammar.AbstractRegParamGrammar;
@@ -10,12 +11,9 @@ import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class DefaultParamGrammar<T extends RegParam> extends AbstractRegParamGrammar<T>{
+@Grammar("defaultParamGrammar")
+public class DefaultParamGrammar extends AbstractRegParamGrammar{
     private final static Pattern PARAM_REG = Pattern.compile("\\$\\{([a-zA-Z_]+[a-zA-z_0-9]?)\\}");
-
-    public DefaultParamGrammar(T t) {
-        super(t);
-    }
 
     @Override
     public Pattern loadGrammar() {
@@ -31,4 +29,5 @@ public class DefaultParamGrammar<T extends RegParam> extends AbstractRegParamGra
     public String callback(String regReplaceContent, Map<String, String> paramMap, Matcher matcher) throws ScriptException {
         return null;
     }
+
 }

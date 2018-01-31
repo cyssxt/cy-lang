@@ -21,9 +21,9 @@ public class test {
         map.put("a","a");
         map.put("b","b");
         RegParam regParam = new RegParam(map);
-        Parser<RegParam,RegValue> parser = new RegParser(new DefaultRegParamGrammar(regParam));
-        RegValue regValue = parser.parser("${a}${b}");
-        assert("ab".equals(regValue.getValue()));
+        Parser parser = new RegParser(new DefaultRegParamGrammar());
+        String value= parser.parser("${a}${b}",map);
+        assert("ab".equals(value));
 //        System.out.println(regValue.getValue());
     }
 
