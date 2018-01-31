@@ -18,7 +18,7 @@ public class FunctionParamGrammar extends AbstractRegParamGrammar<RegParam>{
 //        return PARAM_KEY_EXP.replace("name",key);
 //    }
 
-    public FunctionParamGrammar(FunctionParam functionParam) {
+    public FunctionParamGrammar(RegParam functionParam) {
         super(functionParam);
     }
 

@@ -15,6 +15,12 @@ A language for json parse which contains params or expression
 
 
 
-## To be continued!!!!!!
+## language rules flows:
+### ${name}:like jsp's el expression,name is the param's name
+###\##1+1##:it's a expression,we will evaluate it as js expression.for example,##1+1##的值为2
+### {if ${name}}aaaaaa{/if}:this is if expression,name is the param key,${name} will be evalute boolean value through javascript programm
 
- 
+
+
+
+## To be continued!!!!!!
