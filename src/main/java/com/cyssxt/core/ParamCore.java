@@ -1,13 +1,10 @@
 package com.cyssxt.core;
 
-import com.cyssxt.bean.RegParam;
-import com.cyssxt.bean.RegValue;
 import com.cyssxt.grammar.impl.DefaultRegParamGrammar;
-import com.cyssxt.parser.RegParser;
+import com.cyssxt.parser.impl.RegParser;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.LinkedList;
 import java.util.List;
 
 public class ParamCore {
@@ -18,8 +15,8 @@ public class ParamCore {
     }
     public ParamCore(String source) throws Exception {
         this.source = source;
-        RegParser regParser = new RegParser(new DefaultRegParamGrammar());
-        parserLinkedList.add(regParser);
+//        RegParser regParser = new RegParser(new DefaultRegParamGrammar());
+//        parserLinkedList.add(regParser);
         end();
 //        return regParser.parser(source).getValue();
     }

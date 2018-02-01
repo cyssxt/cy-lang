@@ -44,6 +44,11 @@ public class PropertiesUtils {
        return getProperty(PropertyConstant.PREFIX,key,dft);
     }
 
+    public static boolean getProperty(String key,boolean dft){
+        String value =  getProperty(key);
+        return StringUtils.isEmpty(value)?dft:("true".equals(value)?true:false);
+    }
+
     public static void main(String[] args) throws IOException {
         System.out.println();
     }

@@ -5,13 +5,14 @@ import com.cyssxt.bean.BaseParam;
 import com.cyssxt.bean.RegParam;
 import com.cyssxt.grammar.AbstractRegParamGrammar;
 import com.cyssxt.grammar.ParamGrammar;
+import com.cyssxt.parser.impl.DefaultParser;
 
 import javax.script.ScriptException;
 import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-@Grammar("defaultParamGrammar")
+@Grammar(value = "paramGrammar",parser = DefaultParser.class)
 public class DefaultParamGrammar extends AbstractRegParamGrammar{
     private final static Pattern PARAM_REG = Pattern.compile("\\$\\{([a-zA-Z_]+[a-zA-z_0-9]?)\\}");
 

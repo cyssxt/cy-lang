@@ -2,9 +2,8 @@ package com.cyssxt.annotation;
 
 import java.lang.annotation.*;
 
-@Target({ElementType.METHOD})
 @Retention(RetentionPolicy.RUNTIME)
 @Documented
-public @interface Parser {
+public @interface ParserAnno {
     String value() default "";
 }

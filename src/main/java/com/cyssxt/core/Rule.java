@@ -1,20 +1,25 @@
 package com.cyssxt.core;
 
 
+import com.cyssxt.annotation.Grammar;
 import com.cyssxt.grammar.ParamGrammar;
 import com.cyssxt.parser.Parser;
 
+import java.lang.reflect.Constructor;
+import java.lang.reflect.InvocationTargetException;
+
 public class Rule {
-    private ParamGrammar grammar;
     private Parser parser;
     private String ruleName;
     private final static String SPLIT_FLAG = ":";
-    public Rule(ParamGrammar grammar, Parser parser) {
+    private Class grammarClazz;
+    private Class parserClass;
+    private Grammar grammar;
+    public Rule(Class<ParamGrammar> clazz,Grammar grammar) {
         this.grammar = grammar;
-        this.parser = parser;
-    }
-
-    public void excute(){
+        this.grammarClazz = clazz;
+        this.parserClass = grammar.parser();
+        initRule();
     }
 
     public Rule(String ruleName) {
@@ -22,19 +27,16 @@ public class Rule {
 
     }
     public void initRule(){
-        String[] vals = this.ruleName.split(SPLIT_FLAG);
-        if(vals.length>1){
-            String grammar = vals[0],parser = vals[1];
-
+        try {
+            ParamGrammar paramGrammar = (ParamGrammar) this.grammarClazz.newInstance();
+            Parser parser = (Parser) this.parserClass.newInstance();
+            parser.setParamGrammar(paramGrammar);
+            this.parser = parser;
+        } catch (InstantiationException e) {
+            e.printStackTrace();
+        } catch (IllegalAccessException e) {
+            e.printStackTrace();
         }
-    }
-
-    public ParamGrammar getGrammar() {
-        return grammar;
-    }
-
-    public void setGrammar(ParamGrammar grammar) {
-        this.grammar = grammar;
     }
 
     public Parser getParser() {

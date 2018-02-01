@@ -1,24 +1,22 @@
-package com.cyssxt.parser;
+package com.cyssxt.parser.impl;
 
 import com.cyssxt.bean.RegParam;
 import com.cyssxt.bean.RegValue;
+import com.cyssxt.grammar.ParamGrammar;
 import com.cyssxt.grammar.RegParamGrammar;
 import com.cyssxt.grammar.impl.DefaultRegParamGrammar;
+import com.cyssxt.parser.Parser;
 import com.sun.org.apache.xerces.internal.xni.grammars.Grammar;
 
 import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class RegParser implements Parser {
+public class RegParser implements Parser<RegParamGrammar<Pattern>> {
 
-    private RegParamGrammar<Pattern> regParamGrammar = null;
-    public RegParser(RegParamGrammar<Pattern> regParamGrammar) {
-        this.regParamGrammar = regParamGrammar;
-    }
+    private RegParamGrammar<Pattern> regParamGrammar;
 
     public String parser(String content,Map<String,String> paramMap) throws Exception {
-//        RegParam regParam =  regParamGrammar.loadData();
         Pattern pattern = regParamGrammar.loadGrammar();
 //        Map<String,String> paramMap = regParam.getParamMap();
         Matcher matcher = pattern.matcher(content);
@@ -35,5 +33,15 @@ public class RegParser implements Parser {
         }
         return value;
     }
+
+    @Override
+    public void setParamGrammar(ParamGrammar paramGrammar) {
+        this.regParamGrammar = (RegParamGrammar<Pattern>)paramGrammar;
+    }
+
+//    @Override
+//    public void setGrammar(ParamGrammar paramGrammar) {
+//        this.regParamGrammar = (RegParamGrammar)paramGrammar;
+//    }
 
 }

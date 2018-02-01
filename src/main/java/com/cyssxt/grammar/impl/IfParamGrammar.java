@@ -1,16 +1,16 @@
 package com.cyssxt.grammar.impl;
 
-import com.cyssxt.bean.BaseParam;
-import com.cyssxt.bean.RegParam;
+import com.cyssxt.annotation.Grammar;
 import com.cyssxt.core.JsCore;
 import com.cyssxt.grammar.AbstractRegParamGrammar;
-import com.cyssxt.grammar.RegParamGrammar;
+import com.cyssxt.parser.impl.RegParser;
 
 import javax.script.ScriptException;
 import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+@Grammar(value = "ifParamGrammar",parser = RegParser.class,seq = -8)
 public class IfParamGrammar extends AbstractRegParamGrammar {
 
 

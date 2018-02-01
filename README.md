@@ -20,7 +20,25 @@ A language for json parse which contains params or expression
 ###\##1+1##:it's a expression,we will evaluate it as js expression.for example,##1+1##的值为2
 ### {if ${name}}aaaaaa{/if}:this is if expression,name is the param key,${name} will be evalute boolean value through javascript programm
 
+### Release Note 
+#### 2018-02-01
+* **增加parser.properties**:
+    * 通过配置grammar可以动态设置grammar启用的列表
+    * 增加sortType:可以通过排序方式，如果为true则启用配置文件grammar中的配置顺序，否则启用每个grammar注解文件下的seq从小到大的排序方式启动
+* **增加parser.properties**:增加包扫描方法ClassScanUtils.getAllClass(扫描classpath下的文件)和ClassScanUtils.getAllClassIncludeJar(扫描jar中的class文件和classpath下的文件)
 
-
+```Java
+    String content = "${a}${b}##${cd}+${dd}##{if ${cd}}${ed}{/if}";
+    Map<String,String> map = new HashMap<String,String>();
+    map.put("a","a");
+    map.put("b","b");
+    map.put("cd","1");
+    map.put("dd","2");
+    map.put("ed","3");
+    String result = new Handler().execute(content,map);
+    System.out.println(result);
+    
+    >> ab33
+```
 
 ## To be continued!!!!!!

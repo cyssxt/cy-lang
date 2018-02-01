@@ -1,15 +1,16 @@
 package com.cyssxt.grammar.impl;
 
-import com.cyssxt.bean.FunctionParam;
-import com.cyssxt.bean.RegParam;
+import com.cyssxt.annotation.Grammar;
 import com.cyssxt.core.FunctionCore;
 import com.cyssxt.grammar.AbstractRegParamGrammar;
+import com.cyssxt.parser.impl.RegParser;
 
 import javax.script.ScriptException;
 import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+@Grammar(value = "functionParamGrammar",parser= RegParser.class,seq = -9)
 public class FunctionParamGrammar extends AbstractRegParamGrammar{
 
     private final static Pattern REG = Pattern.compile("##((?!##).+)##");
